@@ -1,0 +1,15 @@
+Input {
+    width: 75%;
+}
+
+.container {
+    text-align: left;
+}
+
+.Row {
+    margin: 8px 5px;
+}
+
+.Btn {
+    width: 80px;
+}
