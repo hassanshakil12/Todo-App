@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "./components/Head";
 import InputComp from "./components/InputComp";
 import TodoItem from "./components/TodoItem";
 import "./App.css";
 
 const App = () => {
-  const todoItems = [
+  const initialtodoItems = [
     {
       name: "Wake Up",
       date: "13/02/2024",
@@ -31,12 +31,20 @@ const App = () => {
       date: "22/03/2024",
     },
   ];
+  const [todoItems, setTodoItems] = useState(initialtodoItems);
+
+  const handleAddBtn=(itemName, itemDate)=>{
+    console.log(`Item Added: ${itemName} Date: ${itemDate}`)
+    const newTodoItem = [...todoItems, {name: itemName, date: itemDate}]
+    setTodoItems(newTodoItem)
+  }
+
   return (
     <>
       <div className="main">
         <center>
           <Head />
-          <InputComp />
+          <InputComp handleAddBtn ={handleAddBtn}/>
           <TodoItem todoList={todoItems} />
         </center>
       </div>

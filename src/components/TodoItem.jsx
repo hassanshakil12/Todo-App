@@ -5,7 +5,7 @@ const TodoItem = ({todoList}) => {
   return (
     <>
     {todoList.map((item)=>
-        <TodoItems name={item.name} date={item.date} />
+        <TodoItems key={item.date} name={item.name} date={item.date} />
     )}
     </>
   )
