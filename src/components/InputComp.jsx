@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import css from "../styles/InputComp.module.css";
 
 const InputComp = ({ handleAddBtn }) => {
-  const [todoName, setTodoName] = useState();
-  const [todoDate, setTodoDate] = useState();
+  const [todoName, setTodoName] = useState("");
+  const [todoDate, setTodoDate] = useState("");
 
   const handleNameOnChange = (event) => {
     setTodoName(event.target.value);
@@ -15,8 +15,8 @@ const InputComp = ({ handleAddBtn }) => {
 
   const addBtn = () => {
     handleAddBtn(todoName, todoDate);
-    setTodoDate("");
     setTodoName("");
+    setTodoDate("");
   };
 
   return (
@@ -25,6 +25,7 @@ const InputComp = ({ handleAddBtn }) => {
         <div className="col-6">
           <input
             onChange={handleNameOnChange}
+            value={todoName}
             type="text"
             placeholder="Enter todo task"
             className={`${css.Input}`}
@@ -33,6 +34,7 @@ const InputComp = ({ handleAddBtn }) => {
         <div className="col-4">
           <input
             onChange={handleDateOnChange}
+            value={todoDate}
             type="date"
             className={`${css.Input}`}
           />

@@ -7,7 +7,7 @@ const TodoItem = ({ todoList, handleDeleteBtn }) => {
       {todoList.map((item) => (
         <TodoItems
           handleDeleteBtn={handleDeleteBtn}
-          key={item.date}
+          key={Math.random()*100}
           name={item.name}
           date={item.date}
         />
