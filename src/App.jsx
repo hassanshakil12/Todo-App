@@ -39,13 +39,19 @@ const App = () => {
     setTodoItems(newTodoItem)
   }
 
+  const handleDeleteBtn=(itemName)=>{
+    console.log(`Item Deleted: ${itemName}`)
+    const newTodoItem = todoItems.filter(item=> item.name !== itemName)
+    setTodoItems(newTodoItem);
+  }
+
   return (
     <>
       <div className="main">
         <center>
           <Head />
-          <InputComp handleAddBtn ={handleAddBtn}/>
-          <TodoItem todoList={todoItems} />
+          <InputComp handleAddBtn={handleAddBtn} />
+          <TodoItem todoList={todoItems} handleDeleteBtn={handleDeleteBtn} />
         </center>
       </div>
     </>
