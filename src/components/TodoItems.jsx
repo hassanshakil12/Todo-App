@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import css from "../styles/TodoItems.module.css";
+import { TodoItemsContext } from "../context/todo_items_store";
 
-const InputItem2 = ({ name, date, handleDeleteBtn }) => {
+const InputItem2 = ({ name, date }) => {
+  const { deleteBtn } = useContext(TodoItemsContext);
+  
   return (
     <div className={`${css.container} container`}>
       <div className={`${css.Row} row`}>
@@ -10,7 +13,7 @@ const InputItem2 = ({ name, date, handleDeleteBtn }) => {
         <div className="col-2 text-center">
           <div
             className={`${css.Btn} btn btn-danger`}
-            onClick={() => handleDeleteBtn(name)}
+            onClick={() => deleteBtn(name)}
           >
             Delete
           </div>

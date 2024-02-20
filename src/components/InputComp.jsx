@@ -1,22 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useRef } from "react";
+import { IoAddCircleOutline } from "react-icons/io5";
 import css from "../styles/InputComp.module.css";
+import { TodoItemsContext } from "../context/todo_items_store";
 
-const InputComp = ({ handleAddBtn }) => {
-  const [todoName, setTodoName] = useState("");
-  const [todoDate, setTodoDate] = useState("");
+const InputComp = () => {
+  const { addBtn } = useContext(TodoItemsContext);
 
-  const handleNameOnChange = (event) => {
-    setTodoName(event.target.value);
-  };
+  const todoNameElement = useRef();
+  const todoDateElement = useRef();
 
-  const handleDateOnChange = (event) => {
-    setTodoDate(event.target.value);
-  };
-
-  const addBtn = () => {
-    handleAddBtn(todoName, todoDate);
-    setTodoName("");
-    setTodoDate("");
+  const handleAddBtn = () => {
+    console.log("done")
+    const todoName = todoNameElement.current.value;
+    const todoDate = todoDateElement.current.value;
+    addBtn(todoName, todoDate);
+    todoNameElement.current.value = "";
+    todoDateElement.current.value = "";
   };
 
   return (
@@ -24,24 +23,18 @@ const InputComp = ({ handleAddBtn }) => {
       <div className={`${css.Row} row`}>
         <div className="col-6">
           <input
-            onChange={handleNameOnChange}
-            value={todoName}
+            ref={todoNameElement}
             type="text"
             placeholder="Enter todo task"
             className={`${css.Input}`}
           />
         </div>
         <div className="col-4">
-          <input
-            onChange={handleDateOnChange}
-            value={todoDate}
-            type="date"
-            className={`${css.Input}`}
-          />
+          <input ref={todoDateElement} type="date" className={`${css.Input}`} />
         </div>
         <div className="col-2 text-center">
-          <div className={`${css.Btn} btn btn-success`} onClick={addBtn}>
-            Add
+          <div className={`${css.Btn} btn btn-success`} onClick={handleAddBtn}>
+            <IoAddCircleOutline />
           </div>
         </div>
       </div>

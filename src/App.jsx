@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Head from "./components/Head";
 import InputComp from "./components/InputComp";
 import TodoItem from "./components/TodoItem";
 import "./App.css";
+import { TodoItemsContext } from "./context/todo_items_store";
+
 
 const App = () => {
   const initialtodoItems = [
@@ -33,13 +35,13 @@ const App = () => {
   ];
   const [todoItems, setTodoItems] = useState(initialtodoItems);
 
-  const handleAddBtn=(itemName, itemDate)=>{
+  const addBtn=(itemName, itemDate)=>{
     console.log(`Item Added: ${itemName} Date: ${itemDate}`)
     const newTodoItem = [...todoItems, {name: itemName, date: itemDate}]
     setTodoItems(newTodoItem)
   }
 
-  const handleDeleteBtn=(itemName)=>{
+  const deleteBtn=(itemName)=>{
     console.log(`Item Deleted: ${itemName}`)
     const newTodoItem = todoItems.filter(item=> item.name !== itemName)
     setTodoItems(newTodoItem);
@@ -49,9 +51,15 @@ const App = () => {
     <>
       <div className="main">
         <center>
-          <Head />
-          <InputComp handleAddBtn={handleAddBtn} />
-          <TodoItem todoList={todoItems} handleDeleteBtn={handleDeleteBtn} />
+          <TodoItemsContext.Provider value={{
+            todoItems: todoItems, 
+            addBtn: addBtn, 
+            deleteBtn: deleteBtn
+            }}>
+            <Head />
+            <InputComp/>
+            <TodoItem />
+          </TodoItemsContext.Provider>
         </center>
       </div>
     </>

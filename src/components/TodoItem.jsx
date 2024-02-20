@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import TodoItems from "./TodoItems"
+import { TodoItemsContext } from "../context/todo_items_store";
 
-const TodoItem = ({ todoList, handleDeleteBtn }) => {
+const TodoItem = () => {
+  const { todoItems } = useContext(TodoItemsContext);
   return (
     <>
-      {todoList.map((item) => (
+      {todoItems.map((item) => (
         <TodoItems
-          handleDeleteBtn={handleDeleteBtn}
-          key={Math.random()*100}
+          key={Math.random() * 100}
           name={item.name}
           date={item.date}
         />
