@@ -10,7 +10,6 @@ const InputComp = () => {
   const todoDateElement = useRef();
 
   const handleAddBtn = () => {
-    console.log("done")
     const todoName = todoNameElement.current.value;
     const todoDate = todoDateElement.current.value;
     addBtn(todoName, todoDate);
